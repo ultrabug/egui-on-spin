@@ -1,0 +1,18 @@
+spin_manifest_version = "1"
+authors = ["Ultrabug <ultrabug@redacted.com>"]
+description = ""
+name = "egui-on-spin"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "egui-endpoint"
+source = { url = "https://github.com/fermyon/spin-fileserver/releases/download/v0.0.2/spin_static_fs.wasm", digest = "sha256:65456bf4e84cf81b62075e761b2b0afaffaef2d0aeda521b245150f76b96421b" }
+allowed_http_hosts = []
+files = [ { source = "egui-endpoint/webapp/", destination = "/" } ]
+[component.trigger]
+route = "/..."
+[component.build]
+command = "rm -rf webapp/*; cargo build --target wasm32-unknown-unknown --release; wasm-bindgen target/wasm32-unknown-unknown/release/egui-endpoint.wasm --out-dir webapp --target web --no-typescript; cp index.html webapp/; cp -r assets/* webapp/"
+workdir = "egui-endpoint"
+watch = ["src/**/*.rs", "Cargo.toml"]
