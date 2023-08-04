@@ -4,6 +4,17 @@ This project is the result of an **experiment** to use [Fermyon's Spin](https://
 
 This experiment aimed at using **only** Spin to build, serve locally and deploy the egui application. I also added support to run the native egui application.
 
+## Prerequisites
+
+- A working `rustup` and `spin` installation
+
+Install the tools and target you need:
+
+```bash
+$ make prerequisites
+```
+
+
 ## Trying it out
 
 Set your `spin` binary PATH in the `Makefile` heading `SPIN` variable.

@@ -1,6 +1,10 @@
 # set your own spin PATH
 SPIN = /home/alexys/fermyon/spin
 
+prerequisites:
+	rustup target add wasm32-unknown-unknown
+	cargo install wasm-bindgen-cli
+
 run: # local native run
 	cd egui-endpoint && cargo run
 
